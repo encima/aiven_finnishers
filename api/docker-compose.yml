@@ -4,7 +4,7 @@ services:
   api:
     image: postgrest/postgrest
     ports:
-      - "8000:3000"
+      - "3000:3000"
     environment:
       PGRST_DB_URI: $PG_URI
       PGRST_DB_SCHEMA: api
@@ -16,6 +16,6 @@ services:
     expose:
       - "8080"
     environment:
-      API_URL: http://0.0.0.0:8000/
+      API_URL: http://0.0.0.0:3000/
 volumes:
     pgdata: {}
