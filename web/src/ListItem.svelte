@@ -24,9 +24,12 @@
 	a {
 		color: #333;
 	}
+	img {
+		width: 3%;
+		border-radius: 70%;
+	}
 </style>
 
 <article>
-	<!-- <span><img class='avatar' src={release.avatar_url} alt="Github User Avatar"/></span> -->
-	<h2><a target="_blank" href={release.repo_url}>{release.repo_name}</a></h2>
+	<h2><img src={release.avatar_url} alt="Github User Avatar"/><a target="_blank" href={release.release_url}>{release.username} released {release.repo_name}: {release.release_title}</a></h2>
 </article>

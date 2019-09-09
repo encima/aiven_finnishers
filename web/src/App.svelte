@@ -6,7 +6,6 @@
 
 	let releases;
 
-    
     onMount(function() {
         fetch(url)
 		.then(r => r.json())
@@ -36,11 +35,6 @@
 	main :global(a) {
 		color: rgb(0,0,150);
 	}
-
-	h1 {
-		font-size: 1.4em;
-		margin: 0;
-	}
     
 	a {
 		padding: 2em;
@@ -56,22 +50,6 @@
 	@keyframes fade-in {
 		from { opacity: 0; }
 		to { opacity: 1; }
-	}
-
-	article {
-		position: relative;
-		padding: 0 0 0 1em;
-		border-bottom: 1px solid #eee;
-	}
-
-	h2 {
-		font-size: 1em;
-		margin: 0.5em 0;
-	}
-
-	span {
-		position: absolute;
-		left: 0;
 	}
 
 	section {
