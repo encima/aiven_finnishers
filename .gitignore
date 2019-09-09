@@ -1,0 +1,7 @@
+.gitsecret/keys/random_seed
+!*.secret
+consumer/config.py
+kafka_ssl/ca.pem
+kafka_ssl/service.cert
+kafka_ssl/service.key
+api/.env
