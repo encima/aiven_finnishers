@@ -29,12 +29,14 @@ There are four folders:
 3. Svelte was used for the web frontend
 4. Git Secret was used to hide `env` and `config` files
 
-## TODOS
+## TODOS (Could Dos)
 
 * [ ] Better exception handling for the producer and consumer
-* [ ] Fewer hard coded env vars
-* [ ] Check user exists before creating
+* [x] Fewer hard coded env vars
+* [ ] Get more than one release for each user (rate limit affects this)
+* [x] Check user exists before creating
 * [ ] Thread producer/create system service
-* [ ] Use more complex search query so less parsing needs to be done
+* [ ] Show user repos in json array with releases inside
 * [ ] Containerise
+* [ ] Use submodules instead of this monorepo
 * [ ] As always...tests
