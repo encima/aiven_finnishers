@@ -1,50 +1,128 @@
 import svelte from 'rollup-plugin-svelte';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
-import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 
 const production = !process.env.ROLLUP_WATCH;
 
-export default {
-	input: 'src/main.js',
-	output: {
-		sourcemap: true,
-		format: 'iife',
-		name: 'app',
-		file: 'public/bundle.js'
+export default [
+	{
+		input: ['src/SvelteTable.svelte'],
+		output: {
+			customElement: true,
+			sourcemap: true,
+			format: 'cjs',
+			name: 'svelteTable',
+			dir: 'dist/cjs'
+		},
+		globals: {
+			'SvelteTable.svelte': 'src/SvelteTable.svelte'
+		},
+		external: [
+			'SvelteTable.svelte'
+		],
+		plugins: [
+			svelte({
+				dev: !production,
+				css: css => {
+					css.write('dist/cjs/style.css');
+				}
+			}),
+
+			resolve(),
+			commonjs(),
+
+			production && terser()
+		]
 	},
-	plugins: [
-		svelte({
-			// enable run-time checks when not in production
-			dev: !production,
-			// we'll extract any component CSS out into
-			// a separate file  better for performance
-			css: css => {
-				css.write('public/bundle.css');
-			}
-		}),
+	{
+		input: ['src/SvelteTable.svelte'],
+		output: {
+			customElement: true,
+			sourcemap: true,
+			format: 'umd',
+			name: 'svelteTable',
+			dir: 'dist/umd'
+		},
+		plugins: [
+			svelte({
+				dev: !production,
+				css: css => {
+					css.write('dist/umd/style.css');
+				}
+			}),
 
-		// If you have external dependencies installed from
-		// npm, you'll most likely need these plugins. In
-		// some cases you'll need additional configuration 
-		// consult the documentation for details:
-		// https://github.com/rollup/rollup-plugin-commonjs
-		resolve({
-			browser: true,
-			dedupe: importee => importee === 'svelte' || importee.startsWith('svelte/')
-		}),
-		commonjs(),
+			resolve(),
+			commonjs(),
 
-		// Watch the `public` directory and refresh the
-		// browser on changes when not in production
-		!production && livereload('public'),
+			production && terser()
+		]
+	},
+	{
+		input: ['src/SvelteTable.svelte'],
+		output: {
+			customElement: true,
+			sourcemap: true,
+			format: 'iife',
+			name: 'svelteTable',
+			dir: 'dist/iife'
+		},
+		plugins: [
+			svelte({
+				dev: !production,
+				css: css => {
+					css.write('dist/iife/style.css');
+				}
+			}),
 
-		// If we're building for production (npm run build
-		// instead of npm run dev), minify
-		production && terser()
-	],
-	watch: {
-		clearScreen: false
-	}
-};
+			resolve(),
+			commonjs(),
+
+			production && terser()
+		]
+	},
+	{
+		input: ['src/SvelteTable.svelte'],
+		output: {
+			customElement: true,
+			sourcemap: true,
+			format: 'iife',
+			name: 'svelteTable',
+			dir: 'public/iife'
+		},
+		plugins: [
+			svelte({
+				dev: !production,
+				css: css => {
+					css.write('public/iife/style.css');
+				}
+			}),
+
+			resolve(),
+			commonjs(),
+
+			production && terser()
+		]
+	},
+	{
+		input: 'src/main.js',
+		output: {
+			customElement: true,
+			sourcemap: true,
+			format: 'iife',
+			name: 'app',
+			dir: 'public/bundle'
+		},
+		plugins: [
+			svelte({
+				dev: !production,
+				css: css => {
+					css.write('public/bundle/style.css');
+				}
+			}),
+			resolve(),
+			commonjs(),
+			production && terser()
+		]
+	},
+];
