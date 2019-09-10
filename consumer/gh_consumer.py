@@ -44,7 +44,7 @@ class Consumer:
                 # value_deserializer=lambda m: json.loads(m).decode('utf-8')
             )
         except Exception as e:
-            print(e)
+            print(f'Failed to connect to Kafka: {str(e)}')
             sys.exit(1)
 
         self.db_connect()
@@ -66,10 +66,15 @@ class Consumer:
                 database=config.DB["db"],
                 sslmode="require",
             )
-            db.generate_mapping()
         except Exception as e:
-            print(str(e))
+            print(f'Database connection failed with the following: {str(e)}')
             sys.exit(1)
+        try:
+            db.generate_mapping()
+        except pony.ERDiagramError as erd_error:
+            print(f'Mapping failed with the following: {str(erd_error)}')
+            sys.exit(1)
+
 
     @db_session
     def add_record(self, record):

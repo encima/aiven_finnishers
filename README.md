@@ -32,6 +32,8 @@ There are four folders:
 ## TODOS (Could Dos)
 
 * [ ] Better exception handling for the producer and consumer
+* [ ] Key/Value serializers
+* [ ] Use Kafka Schema Registry
 * [x] Fewer hard coded env vars
 * [ ] Get more than one release for each user (rate limit affects this)
 * [x] Check user exists before creating

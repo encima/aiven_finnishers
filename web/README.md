@@ -8,3 +8,5 @@ A PWA made using Svelte (alot of help from [examples](https://svelte.dev/example
 npm install
 npm run dev OR npm run build
 ```
+
+Open your browser to localhost:5000 and enjoy!
