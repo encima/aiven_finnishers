@@ -4,6 +4,7 @@ Nothing in this folder is self developed and simply exposes a very simple (read:
 
 ### Running
 
+Run `scripts/init_db.sql` to create your database. Note: the user created (and used by the API) will have no modification rights to the db.
 `docker-compose up`
 
 #### Ports

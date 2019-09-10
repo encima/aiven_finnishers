@@ -6,8 +6,6 @@ A python Github crawler to find Finnish users with releases in their repository 
 
 Use `config.sample.py` to set up your own `config.py` file.
 
-Use the `init_db.sql` in the `scripts` folder to set up your database
-
 ```
 virtalenv prod
 source prod/bin/activate

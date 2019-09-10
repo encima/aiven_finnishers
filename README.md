@@ -20,6 +20,8 @@ There are four folders:
 3. Web - This is a Svelte application (because I have not used it yet and wanted to try it) that provides a web site to view the data in a list
 4. API - Postgrest service that connects to the Managed Aiven Postgres database and exposes an OpenAPI based on the db schema. There is also a script in there that was used to create the database, of no security importance
 
+You will need to add your own keys to the `kafka_ssl` folder, or request to be added to the repository by the repository owner; they can then add your GPG key to `git-secret`.
+
 ----
 
 #### Tools
