@@ -11,6 +11,15 @@ Utilise Aiven's offerings of Postgres and Kafka to produce data into a Kafka top
 
 ---
 
+### Solution
+
+1. Producer - Retrieve Github users based in Finland with 1 or more releases in a repository
+2. Consumer - Consume those repos and store them in a Postgres DB
+3. API - Serve the data using Postgrest and use a view to collect all relevant data
+4. Web - Show those users in a list and give them the props they deserve!
+
+---
+
 #### Running
 
 There are four folders:
@@ -23,6 +32,11 @@ There are four folders:
 You will need to add your own keys to the `kafka_ssl` folder, or request to be added to the repository by the repository owner; they can then add your GPG key to `git-secret`.
 
 ----
+
+### Resources/References
+
+* Heavy help provided by the `kafka-python` and `pygithub` docs
+* `Pony` ORM examples and `Svelte` Hacker News examples were also used
 
 #### Tools
 
@@ -44,3 +58,9 @@ You will need to add your own keys to the `kafka_ssl` folder, or request to be a
 * [ ] Containerise
 * [ ] Use submodules instead of this monorepo
 * [ ] As always...tests
+
+---
+
+### Screenshot
+
+![](./web/img/screenshot.png)
