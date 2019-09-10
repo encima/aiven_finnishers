@@ -1,5 +1,5 @@
+from . import config
 from kafka import KafkaConsumer
-import config
 import sys, json
 from pony.orm import *
 
@@ -27,7 +27,7 @@ class Release(db.Entity):
     part_of = Required(Repo)
 
 
-class Consumer:
+class GithubConsumer:
     def __init__(self):
         try:
             self.con = KafkaConsumer(
@@ -48,10 +48,13 @@ class Consumer:
             sys.exit(1)
 
         self.db_connect()
+        print(f'Connection successful, listening for messages in: {config.TOPIC} topic')
         try:
             for msg in self.con:
                 record = json.loads(msg.value)
                 self.add_record(record)
+        except (KeyboardInterrupt):
+            sys.exit(0)
         except Exception as e:
             print(e)
 
@@ -64,7 +67,7 @@ class Consumer:
                 host=config.DB["host"],
                 port=config.DB["port"],
                 database=config.DB["db"],
-                sslmode="require",
+                sslmode=config.DB['ssl'],
             )
         except Exception as e:
             print(f'Database connection failed with the following: {str(e)}')
@@ -78,6 +81,12 @@ class Consumer:
 
     @db_session
     def add_record(self, record):
+        """Check for existence of users and repositories before adding them to
+        Postgres. Commit handled by session decorator
+        
+        Arguments:
+            record {dict} -- Message from kafka topic containg details on user, repo and release
+        """
         user = User.get(username=record["user"])
         if not user:
             user = User(username=record["user"], avatar_url=record["avatar_url"])
@@ -98,5 +107,5 @@ class Consumer:
 
 
 if __name__ == "__main__":
-    c = Consumer()
+    c = GithubConsumer()
 

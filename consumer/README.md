@@ -8,6 +8,7 @@ Use `config.sample.py` to set up your own `config.py` file.
 
 ```
 virtalenv cons
+source cons/bin/activate
 pip install -r requirements.txt
-python gh_consumer.py
+make run OR make test
 ```
