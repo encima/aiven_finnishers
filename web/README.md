@@ -2,6 +2,10 @@
 
 A PWA made using Svelte (alot of help from [examples](https://svelte.dev/examples#hacker-news)) to show finnish users taken from an OpenAPI
 
+### Screenshot
+
+![](./img/screenshot.png)
+
 ### Running
 
 ```
