@@ -1,9 +1,10 @@
 from github import Github
 from kafka import KafkaProducer
+from . import config
 import threading
 from functools import wraps
-import time, json
-import config
+import time, json, sys
+
 
 def check_github_rate(f):
     def wrapper(*args):
@@ -17,11 +18,14 @@ def check_github_rate(f):
         return f(*args)
     return wrapper
 
-class Fin_Search:
-    g = None
+class GithubProducer:
 
     def __init__(self):
-        self.g = Github(config.GITHUB_PAT, api_preview=True)
+        try:
+            self.g = Github(config.GITHUB_PAT, api_preview=True)
+        except Exception as e:
+            print(f'Failed to connect to Github: {str(e)}')
+            sys.exit(1)
         self.connect_kafka_producer()
 
     def connect_kafka_producer(self):
@@ -40,6 +44,7 @@ class Fin_Search:
             )
         except Exception as e:
             print(f"Exception while connecting Kafka: {str(e)}")
+            sys.exit(1)
 
     def publish_kafka_message(self, key, value):
         try:
@@ -91,6 +96,6 @@ class Fin_Search:
         return False
 
 if __name__ == "__main__":
-    s = Fin_Search()
+    s = GithubProducer()
     s.search_fins()
 

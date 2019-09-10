@@ -1,2 +1,4 @@
+__pycache__
 config.py
-prod/*
+prod/
+.pytest_cache

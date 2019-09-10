@@ -10,3 +10,9 @@ npm run dev OR npm run build
 ```
 
 Open your browser to localhost:5000 and enjoy!
+
+### Testing 
+
+```
+npm run test
+```

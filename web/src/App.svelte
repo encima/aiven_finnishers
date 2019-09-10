@@ -11,7 +11,7 @@
 		.then(r => r.json())
 		.then(data => {
 			releases = data;
-			window.scrollTo(0, 0);
+			// window.scrollTo(0, 0);
 		});
     });
 	    
